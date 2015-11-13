@@ -13,13 +13,6 @@ angular.module('app.facebook', ['ngOpenFB'])
   }, function( err ) {
     console.log(err);
   });
-  
-  $openFB.api({path: '/me/friends'})
-  .then(function (res) {
-    angular.extend($scope.me, res);
-  }, function (err) {
-    console.log(err);
-  });
 
   $openFB.api({
     path: '/me/picture',
