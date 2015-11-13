@@ -1,6 +1,6 @@
 angular.module('app.map', [])
 
-.controller('MapController', ['$scope', 'ServerInteraction', function ($scope) {
+.controller('MapController', ['$scope', 'ServerInteraction', function ($scope, ServerInteraction) {
   // methods to be used inside map.html
   $scope.user.userName = window.storage[0].name;
   $scope.user.userPic = window.storage[0].picture;
@@ -20,6 +20,12 @@ angular.module('app.map', [])
       $scope.latitude = startPos.coords.latitude;
       $scope.longitude = startPos.coords.longitude;
 
+      var x = ServerInteraction.storage[0];
+      x.lat = $scope.latitude;
+      x.long = $scope.longitude;
+
+      console.log('what is x', x);
+      socket.emit('test', x);
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
   }
